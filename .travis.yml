@@ -1,0 +1,18 @@
+language: csharp
+solution: Libraries/Aliyun.FunctionCompute.sln
+
+matrix:
+  include:
+    - dotnet: 2.0.0
+      mono:
+  - latest
+    - 5.4.1
+    - 4.8.1
+  - 3.12.0
+
+env:
+  global:
+    - MONO_IOMAP=all
+
+script:
+ - dotnet restore Libraries/Aliyun.FunctionCompute.sln

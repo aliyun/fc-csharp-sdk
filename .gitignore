@@ -1,0 +1,9 @@
+*.swp
+*.suo
+*.user
+Backup*
+*.vs
+*.nuspec
+
+bin
+obj
