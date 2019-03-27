@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.6.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\" />
+    <Folder Include="Response\" />
+    <Folder Include="Request\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Config\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Auth\" />
+    <Folder Include="model\" />
+    <Folder Include="Request\Service\" />
+    <Folder Include="Request\Function\" />
+    <Folder Include="Response\Service\" />
+    <Folder Include="Response\Function\" />
+    <Folder Include="Request\Trigger\" />
+    <Folder Include="Response\Trigger\" />
+    <Folder Include="Request\Version\" />
+    <Folder Include="Request\Alias\" />
+    <Folder Include="Request\CustomDomain\" />
+    <Folder Include="Response\Version\" />
+    <Folder Include="Response\Alias\" />
+    <Folder Include="Response\CustomDomain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Client\RuntimeException.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+*.swp
+*.suo
+*.user
+Backup*
+*.vs
+
+bin
+obj
