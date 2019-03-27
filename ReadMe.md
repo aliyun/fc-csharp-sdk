@@ -26,14 +26,6 @@ Installation
  
  - Type `aliyun.fc.sdk` in the search box and click *Search*, find `Aliyun.FC.SDK` or `Aliyun.FC.SDK.NetCore` in the search results, select the latest version, and click *Install*. After installation, the SDK is added to the project.
 
-#### Install the SDK through GitHub
- - If Git hasn't been installed, install [Git](https://git-scm.com/downloads) first. 
- 
- - Clone project via `git clone https://github.com/aliyun/fc-csharp-sdk.git`. 
- 
- - After the source code is downloaded, install the SDK by entering `Install via Project Introduction`.
-
-
 Getting started
 -------------------
 
@@ -112,6 +104,7 @@ Install [xunit](https://www.nuget.org/packages/xunit/), then run the test in the
 
     $ cd Libraries/src/Aliyun.FunctionCompute.SDK.Unittests
     $ dotnet test
+
 
 More resources
 --------------
