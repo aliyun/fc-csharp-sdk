@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Reflection;
 using Aliyun.FunctionCompute.SDK.Constants;
 
 namespace Aliyun.FunctionCompute.SDK.Config
@@ -30,7 +31,8 @@ namespace Aliyun.FunctionCompute.SDK.Config
             this.AccessKeySecret = accessKeySecret;
             this.SecurityToken = securityToken;
 
-            this.UserAgent = "fc-dotnet-sdk-1.0.0";
+            string v = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.UserAgent = "fc-dotnet-sdk-" + v;
         }
 
         public string AccessKeySecret { get ; set ; }
