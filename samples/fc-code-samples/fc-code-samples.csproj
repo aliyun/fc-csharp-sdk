@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>fc_code_samples</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aliyun.Serverless.Core" Version="1.0.1" />
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="PeterO.Cbor" Version="3.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UseContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+</Project>
