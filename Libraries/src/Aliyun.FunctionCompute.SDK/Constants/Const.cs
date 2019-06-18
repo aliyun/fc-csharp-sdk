@@ -18,7 +18,7 @@ namespace Aliyun.FunctionCompute.SDK.Constants
         public static readonly string ALIAS_PATH = SINGLE_SERVICE_PATH + "/aliases";
         public static readonly string SINGLE_ALIAS_PATH = ALIAS_PATH + "/{2}";
         public static readonly string TAG_PATH = "/{0}/tag";
-
+        public static readonly string RESERVED_CAPACITY_PATH = "/{0}/reservedCapacities";
 
         public static readonly string FUNCTION_CODE_PATH = SINGLE_FUNCTION_PATH + "/code";
         public static readonly string TRIGGER_PATH = SINGLE_FUNCTION_PATH + "/triggers";

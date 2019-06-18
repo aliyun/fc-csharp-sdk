@@ -372,6 +372,7 @@ namespace Aliyun.FunctionCompute.SDK.Client
         }
         #endregion customDomain
 
+<<<<<<< HEAD
 
         #region Tag
         /// <summary>
@@ -405,5 +406,16 @@ namespace Aliyun.FunctionCompute.SDK.Client
         }
         #endregion Tag
 
+        #region reservedCapacity
+        /// <summary>
+        /// Lists the reserved capacities.
+        /// </summary>
+        /// <returns>The reserved capacities.</returns>
+        /// <param name="listReservedCapacitiesRequest">List reserved capacities request.</param>
+        public ListReservedCapacitiesResponse ListReservedCapacities(ListReservedCapacitiesRequest listReservedCapacitiesRequest)
+        {
+            return this.DoRequestCommon<ListReservedCapacitiesResponse>(listReservedCapacitiesRequest.GenHttpRequest(Config));
+        }
+        #endregion reservedCapacity
     }
 }
