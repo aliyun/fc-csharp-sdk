@@ -371,5 +371,39 @@ namespace Aliyun.FunctionCompute.SDK.Client
             return this.DoRequestCommon<ListCustomDomainsResponse>(listCustomDomainsRequest.GenHttpRequest(Config));
         }
         #endregion customDomain
+
+
+        #region Tag
+        /// <summary>
+        /// TagResource is an upsert operation. It always updates or adds tags on the given resource.
+        /// </summary>
+        /// <returns>requestId</returns>
+        /// <param name="tagResourceRequest">tag resource request.</param>
+        public TagResourceResponse TagResource(TagResourceRequest tagResourceRequest)
+        {
+            return this.DoRequestCommon<TagResourceResponse>(tagResourceRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// Remove tag key-value pair from the given resource.
+        /// </summary>
+        /// <returns>requestId</returns>
+        /// <param name="unTagResourceRequest">tag resource request.</param>
+        public UntagResourceResponse UnTagResource(UntagResourceRequest unTagResourceRequest)
+        {
+            return this.DoRequestCommon<UntagResourceResponse>(unTagResourceRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// Get all the tags on the given resource.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="getResourceTagsRequest">tag resource request.</param>
+        public GetResourceTagsResponse GetResourceTags(GetResourceTagsRequest getResourceTagsRequest)
+        {
+            return this.DoRequestCommon<GetResourceTagsResponse>(getResourceTagsRequest.GenHttpRequest(Config));
+        }
+        #endregion Tag
+
     }
 }

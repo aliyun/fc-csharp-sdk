@@ -16,11 +16,11 @@ namespace Aliyun.FunctionCompute.SDK.Request
         public Dictionary<string, string> Headers { get; set; }
         public object DomainName { get; private set; }
 
-        public UpdateCustomDomainRequest(string domainName, string protocal = null, string apiVersion = null, RouteConfig routeConfig = null, Dictionary<string, string> customHeaders = null)
+        public UpdateCustomDomainRequest(string domainName, string protocal = null, string apiVersion = null, RouteConfig routeConfig = null, Dictionary<string, string> customHeaders = null, CertConfig certConfig = null)
         {
             Contract.Requires(string.IsNullOrEmpty(domainName) == false);
             this.DomainName = domainName;
-            this.UpdateCustomDomainMeta = new UpdateCustomDomainMeta(protocal, apiVersion, routeConfig);
+            this.UpdateCustomDomainMeta = new UpdateCustomDomainMeta(protocal, apiVersion, routeConfig, certConfig);
             this.Headers = customHeaders;
         }
 

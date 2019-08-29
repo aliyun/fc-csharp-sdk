@@ -91,16 +91,12 @@ Testing
 To run the tests, please set the access key id/secret, endpoint as environment variables.
 Take the Linux system for example:
 
-.. code-block:: bash
-
     $ export ENDPOINT=<endpoint>
     $ export ACCESS_KEY_ID=<AccessKeyId>
     $ export ACCESS_KEY_SECRET=<AccessKeySecret>
-    ...
+
 
 Install [xunit](https://www.nuget.org/packages/xunit/), then run the test in the following method:
-
-.. code-block:: bash
 
     $ cd Libraries/src/Aliyun.FunctionCompute.SDK.Unittests
     $ dotnet test

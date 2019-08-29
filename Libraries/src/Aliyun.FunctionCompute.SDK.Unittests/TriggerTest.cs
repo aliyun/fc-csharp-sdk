@@ -264,15 +264,13 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
 
             this.Triggers.Add(triggerName);
 
-            // cn-hongkong don't support mns topic trigger now
-            Assert.Equal(400, response.StatusCode);
-
-            //Assert.Equal(triggerName, response.Data.TriggerName);
-            //Assert.Equal("mns trigger desc", response.Data.Description);
-            //Assert.Equal("mns_topic", response.Data.TriggerType);
-            //Assert.Equal(sourceArn, response.Data.SourceArn);
-            //Assert.Equal(tf.InvocationRole, response.Data.InvocationRole);
-            //Assert.Equal(JsonConvert.DeserializeObject<MnsTopicTriggerConfig>(response.Data.TriggerConfig.ToString()), mnsTriggerConfig);
+            Assert.Equal(200, response.StatusCode);
+            Assert.Equal(triggerName, response.Data.TriggerName);
+            Assert.Equal("mns trigger desc", response.Data.Description);
+            Assert.Equal("mns_topic", response.Data.TriggerType);
+            Assert.Equal(sourceArn, response.Data.SourceArn);
+            Assert.Equal(tf.InvocationRole, response.Data.InvocationRole);
+            Assert.Equal(JsonConvert.DeserializeObject<MnsTopicTriggerConfig>(response.Data.TriggerConfig.ToString()), mnsTriggerConfig);
         }
 
         [Fact]

@@ -12,16 +12,18 @@ namespace Aliyun.FunctionCompute.SDK.Request
         public string StartKey { get; set; }
         public string NextToken { get; set; }
         public int Limit { get; set; }
+        public Dictionary<string, string> Tags { get; set; }
 
         public Dictionary<string, string> Headers { get; set; }
 
-        public ListServicesRequest(int limit=0,  string prefix=null, string startKey=null, string nextToken=null, Dictionary<string, string> customHeaders = null)
+        public ListServicesRequest(int limit=0,  string prefix=null, string startKey=null, string nextToken=null, Dictionary<string, string> customHeaders = null, Dictionary<string, string> tags = null)
         {
             this.Limit = limit;
             this.Prefix = prefix;
             this.StartKey = startKey;
             this.NextToken = nextToken;
             this.Headers = customHeaders;
+            this.Tags = tags;
         }
 
         public string GetPath()
@@ -42,6 +44,14 @@ namespace Aliyun.FunctionCompute.SDK.Request
             if (!string.IsNullOrEmpty(this.Prefix)) request.AddQueryParameter("prefix", this.Prefix);
             if (!string.IsNullOrEmpty(this.StartKey)) request.AddQueryParameter("startKey", this.StartKey);
             if (!string.IsNullOrEmpty(this.NextToken)) request.AddQueryParameter("nextToken", this.NextToken);
+
+            if (this.Tags!= null && this.Tags.Count > 0)
+            {
+                foreach (var item in this.Tags)
+                {
+                    request.AddQueryParameter("tag_" + item.Key, item.Value);
+                }
+            }
 
             return request;
         }

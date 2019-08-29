@@ -21,6 +21,9 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                 Console.WriteLine(string.Format("delete service {0} .....",name));
                 try
                 {
+                    string[] keys = { };
+                    string resArn = String.Format("services/{0}", name);
+                    tf.Client.UnTagResource(new UntagResourceRequest(resArn, keys, true));
                     tf.Client.DeleteService(new DeleteServiceRequest(name));
                 }
                 catch (Exception)
@@ -88,12 +91,33 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         [Fact]
         public void TestListServices()
         {
-            string prefix = "csharp_test_list_";
+            string prefix = "csharp_test_list_" + TestConfig.RandomString(8);
             string[] names = { prefix + "abc", prefix + "abd", prefix + "ade", prefix + "bcd", prefix + "bde", prefix + "zzz" };
+            int i = 0;
+            Dictionary<string, string> tags;
             foreach (string element in names)
             {
-                tf.Client.CreateService(new CreateServiceRequest(element));
+                var resp = tf.Client.CreateService(new CreateServiceRequest(element));
+                Assert.Equal(200, resp.StatusCode);
+                string resArn = String.Format("services/{0}", element);
+
+                tags = new Dictionary<string, string> {
+                    {"k3","v3"},
+                    {"k1","v1"},
+                };
+                if (i % 2 == 1){
+                   tags = new Dictionary<string, string> {
+                        {"k3","v3"},
+                        {"k2","v2"},
+                    };
+                }
+               
+                var tResp = tf.Client.TagResource(new TagResourceRequest(resArn, tags));
+                Assert.Equal(200, tResp.StatusCode);
+                Assert.NotNull(tResp.Data.RequestId);
+
                 this.ServiceNames.Add(element);
+                i++;
             }
 
             var response1 = tf.Client.ListServices(new ListServicesRequest(2, prefix + "b"));
@@ -103,6 +127,31 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
 
             var response2 = tf.Client.ListServices(new ListServicesRequest(100, prefix));
             Assert.Equal(6, response2.Data.Services.GetLength(0));
+
+           tags = new Dictionary<string, string> {
+                    {"k3","v3"},
+                };
+            var response = tf.Client.ListServices(new ListServicesRequest(20, prefix + "a", null, null, null, tags));
+            Assert.Equal(3, response.Data.Services.GetLength(0));
+
+            tags = new Dictionary<string, string> {
+                    {"k1","v1"},
+                };
+            response = tf.Client.ListServices(new ListServicesRequest(20, prefix + "a", null, null, null, tags));
+            Assert.Equal(2, response.Data.Services.GetLength(0));
+
+            tags = new Dictionary<string, string> {
+                    {"k2","v2"},
+                };
+            response = tf.Client.ListServices(new ListServicesRequest(20, prefix + "a", null, null, null, tags));
+            Assert.Equal(1, response.Data.Services.GetLength(0));
+
+            tags = new Dictionary<string, string> {
+                        {"k1","v1"},
+                        {"k2","v2"},
+                };
+            response = tf.Client.ListServices(new ListServicesRequest(20, prefix + "a", null, null, null, tags));
+            Assert.Equal(0, response.Data.Services.GetLength(0));
         }
     }
 }
