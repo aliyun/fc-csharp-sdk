@@ -24,6 +24,19 @@ namespace Aliyun.FunctionCompute.SDK.model
         public PathConfig[] Routes { get; set; }
     }
 
+    public class CertConfig
+    {
+        [JsonProperty("certName")]
+        public string CertName { get; set; }
+
+        [JsonProperty("privateKey")]
+        public string PrivateKey { get; set; }
+
+        [JsonProperty("certificate")]
+        public string Certificate { get; set; }
+
+    }
+
     public class UpdateCustomDomainMeta
     {
         [JsonProperty("protocol")]
@@ -35,15 +48,19 @@ namespace Aliyun.FunctionCompute.SDK.model
         [JsonProperty("routeConfig")]
         public RouteConfig RouteConfig { get; set; }
 
+        [JsonProperty("certConfig")]
+        public CertConfig CertConfig { get; set; }
+
         public UpdateCustomDomainMeta()
         {
         }
 
-        public UpdateCustomDomainMeta(string protocal=null, string apiVersion=null, RouteConfig routeConfig =null)
+        public UpdateCustomDomainMeta(string protocal=null, string apiVersion=null, RouteConfig routeConfig =null, CertConfig certConfig = null)
         {
             this.Protocol = protocal;
             this.ApiVersion = apiVersion;
             this.RouteConfig = routeConfig;
+            this.CertConfig = certConfig;
         }
     }
 
@@ -57,8 +74,8 @@ namespace Aliyun.FunctionCompute.SDK.model
         {
         }
 
-        public CreateCustomDomainMeta(string domainName, string protocal = null, string apiVersion = null, RouteConfig routeConfig = null):
-            base(protocal,apiVersion ,routeConfig) 
+        public CreateCustomDomainMeta(string domainName, string protocal = null, string apiVersion = null, RouteConfig routeConfig = null, CertConfig certConfig = null) :
+            base(protocal,apiVersion ,routeConfig, certConfig) 
         {
             this.DomainName = domainName;
         }

@@ -31,6 +31,8 @@
     <Folder Include="Response\Version\" />
     <Folder Include="Response\Alias\" />
     <Folder Include="Response\CustomDomain\" />
+    <Folder Include="Request\Tag\" />
+    <Folder Include="Response\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />

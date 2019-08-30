@@ -4,6 +4,7 @@
 Backup*
 *.vs
 *.nuspec
+.vscode
 
 bin
 obj
