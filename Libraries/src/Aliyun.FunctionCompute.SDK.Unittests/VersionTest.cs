@@ -185,6 +185,20 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             var response3 = tf.Client.CreateAlias(new CreateAliasRequest(Service, "staging", response2.Data.VersionId, "alias desc"));
             Assert.Equal(200, response3.StatusCode);
 
+            var resp1 = tf.Client.PutProvisionConfig(new PutProvisionConfigRequest(Service, "staging", name, 10));
+            Assert.Equal(200, resp1.StatusCode);
+            Assert.Equal(10, resp1.Data.Target);
+
+            var resp2 = tf.Client.GetProvisionConfig(new GetProvisionConfigRequest(Service, "staging", name));
+            Assert.Equal(200, resp2.StatusCode);
+            Assert.Equal(10, resp2.Data.Target);
+
+            var resp3 = tf.Client.ListProvisionConfigs(new ListProvisionConfigsRequest(Service, "staging"));
+            Assert.Equal(200, resp3.StatusCode);
+            Assert.Equal(1, resp3.Data.ProvisionConfigs.GetLength(0));
+            Assert.Equal(10, resp3.Data.ProvisionConfigs[0].Target);
+            Assert.True(string.IsNullOrEmpty(resp3.Data.NextToken));
+
             var response4 = tf.Client.GetFunction(new GetFunctionRequest(Service, name));
             Assert.Equal("desc", response4.Data.Description);
 

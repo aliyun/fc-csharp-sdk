@@ -8,6 +8,8 @@ namespace Aliyun.FunctionCompute.SDK.Constants
         public static readonly string ACCOUNT_SETTING_PATH = "/{0}/account-settings";
 
         public static readonly string SERVICE_PATH = "/{0}/services";
+        public static readonly string PROVISION_CONFIGS_PATH = "/{0}/provision-configs";
+
         public static readonly string SINGLE_SERVICE_PATH = SERVICE_PATH + "/{1}";
         public static readonly string FUNCTION_PATH = SINGLE_SERVICE_PATH + "/functions";
         public static readonly string SINGLE_FUNCTION_PATH = FUNCTION_PATH + "/{2}";
@@ -32,6 +34,8 @@ namespace Aliyun.FunctionCompute.SDK.Constants
         public static readonly string SINGLE_FUNCTION_WITH_QUALIFIER_PATH = FUNCTION_WITH_QUALIFIER_PATH + "/{3}";
         public static readonly string FUNCTION_CODE_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/code";
         public static readonly string INVOKE_FUNCTION_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/invocations";
+
+        public static readonly string SINGLE_PROVISION_CONFIG_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/provision-config";
 
         /*
          * 3 seconds
