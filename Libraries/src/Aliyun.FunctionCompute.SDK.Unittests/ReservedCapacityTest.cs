@@ -24,11 +24,11 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
 
             for (int i = 0; i < response.Data.ReservedCapacities.GetLength(0); i++)
             {
-                Assert.Equal(22, response.Data.ReservedCapacities[i].InstanceID.Length);
+                Assert.Equal(22, response.Data.ReservedCapacities[i].InstanceId.Length);
                 Assert.True(response.Data.ReservedCapacities[i].CU > 0);
-                Assert.True(response.Data.ReservedCapacities[i].Deadline > response.Data.ReservedCapacities[i].CreatedTime);
-                Assert.IsNotNull(response.Data.ReservedCapacities[i].LastModifiedTime);
-                Assert.IsNotNull(response.Data.ReservedCapacities[i].IsRefunded);
+                Assert.NotNull(response.Data.ReservedCapacities[i].LastModifiedTime);
+                Assert.NotNull(response.Data.ReservedCapacities[i].IsRefunded);
+                Assert.True(response.Data.ReservedCapacities[i].Deadline.CompareTo(response.Data.ReservedCapacities[i].CreatedTime) > 0);
             }
         }
     }

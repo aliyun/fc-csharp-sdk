@@ -372,8 +372,6 @@ namespace Aliyun.FunctionCompute.SDK.Client
         }
         #endregion customDomain
 
-<<<<<<< HEAD
-
         #region Tag
         /// <summary>
         /// TagResource is an upsert operation. It always updates or adds tags on the given resource.
