@@ -12,8 +12,8 @@ namespace Aliyun.FunctionCompute.SDK.model
         [JsonProperty("cu")]
         public int CU { get; set; }
 
-        [JsonProperty("deadLine")]
-        public string DeadLine { get; set; }
+        [JsonProperty("deadline")]
+        public string Deadline { get; set; }
 
         [JsonProperty("createdTime")]
         public string CreatedTime { get; set; }
