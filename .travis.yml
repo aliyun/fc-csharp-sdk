@@ -5,3 +5,7 @@ dotnet: 2.1
 
 script:
 - dotnet restore Libraries/Aliyun.FunctionCompute.sln
+- cd Libraries/src/Aliyun.FunctionCompute.SDK.Unittests
+- mkdir -p bin/Debug/netcoreapp2.1
+- cp hello.zip bin/Debug/netcoreapp2.1/hello.zip
+- dotnet test

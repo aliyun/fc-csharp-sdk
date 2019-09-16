@@ -415,5 +415,37 @@ namespace Aliyun.FunctionCompute.SDK.Client
             return this.DoRequestCommon<ListReservedCapacitiesResponse>(listReservedCapacitiesRequest.GenHttpRequest(Config));
         }
         #endregion reservedCapacity
+
+        #region Provision
+        /// <summary>
+        /// put provision config.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="putProvisionConfigRequest">List reserved capacities request.</param>
+        public PutProvisionConfigResponse PutProvisionConfig(PutProvisionConfigRequest putProvisionConfigRequest)
+        {
+            return this.DoRequestCommon<PutProvisionConfigResponse>(putProvisionConfigRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// get provision config.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="getProvisionConfigRequest">List reserved capacities request.</param>
+        public GetProvisionConfigResponse GetProvisionConfig(GetProvisionConfigRequest getProvisionConfigRequest)
+        {
+            return this.DoRequestCommon<GetProvisionConfigResponse>(getProvisionConfigRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// list provision config.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="listProvisionConfigsRequest">List reserved capacities request.</param>
+        public ListProvisionConfigsResponse ListProvisionConfigs(ListProvisionConfigsRequest listProvisionConfigsRequest)
+        {
+            return this.DoRequestCommon<ListProvisionConfigsResponse>(listProvisionConfigsRequest.GenHttpRequest(Config));
+        }
+        #endregion Provision
     }
 }

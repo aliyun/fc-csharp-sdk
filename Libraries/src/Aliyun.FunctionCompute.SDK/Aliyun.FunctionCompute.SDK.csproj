@@ -33,6 +33,8 @@
     <Folder Include="Response\CustomDomain\" />
     <Folder Include="Request\Tag\" />
     <Folder Include="Response\Tag\" />
+    <Folder Include="Request\Provision\" />
+    <Folder Include="Response\Provision\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />
