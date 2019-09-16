@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="106.6.9" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
