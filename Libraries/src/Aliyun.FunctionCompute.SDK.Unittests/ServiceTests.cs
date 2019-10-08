@@ -114,7 +114,6 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                
                 var tResp = tf.Client.TagResource(new TagResourceRequest(resArn, tags));
                 Assert.Equal(200, tResp.StatusCode);
-                Assert.NotNull(tResp.Data.RequestId);
 
                 this.ServiceNames.Add(element);
                 i++;
