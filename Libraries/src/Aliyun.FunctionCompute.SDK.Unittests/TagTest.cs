@@ -24,7 +24,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             tf = new TestConfig();
             for(int i =0; i < 3; i++)
             {
-                string SvrName = "test-charp-" + TestConfig.RandomString(8);
+                string SvrName = "test-csharp-" + TestConfig.RandomString(8);
                 var resp = tf.Client.CreateService(new CreateServiceRequest(SvrName));
                 Assert.Equal(200, resp.StatusCode);
                 Services.Add(SvrName);
@@ -72,11 +72,11 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                 }
                 var resp = tf.Client.TagResource(new TagResourceRequest(resArn, tags));
                 Assert.Equal(200, resp.StatusCode);
-                Assert.NotNull(resp.Data.RequestId);
+                Assert.NotNull(resp.GetRequestID());
                
                 var gResp = tf.Client.GetResourceTags(new GetResourceTagsRequest(resArn));
                 Assert.Equal(200, gResp.StatusCode);
-                Assert.NotNull(gResp.Data.RequestID);
+                Assert.NotNull(gResp.GetRequestID());
                 Assert.Equal(fullArn, gResp.Data.ResourceArn);
                 Assert.Equal("v3", gResp.Data.Tags["k3"]);
                 if (i % 2 == 0)
@@ -93,22 +93,22 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                 string[] keys = { "k3" };
                 var uresp = tf.Client.UnTagResource(new UntagResourceRequest(resArn, keys, false));
                 Assert.Equal(200, uresp.StatusCode);
-                Assert.NotNull(uresp.Data.RequestId);
+                Assert.NotNull(uresp.GetRequestID());
 
                 gResp = tf.Client.GetResourceTags(new GetResourceTagsRequest(resArn));
                 Assert.Equal(200, gResp.StatusCode);
-                Assert.NotNull(gResp.Data.RequestID);
+                Assert.NotNull(gResp.GetRequestID());
                 Assert.Equal(fullArn, gResp.Data.ResourceArn);
                 Assert.False(gResp.Data.Tags.ContainsKey("k3"));
 
                 string[]  emptyKeys =  { };
                 uresp = tf.Client.UnTagResource(new UntagResourceRequest(resArn, emptyKeys, true));
                 Assert.Equal(200, uresp.StatusCode);
-                Assert.NotNull(uresp.Data.RequestId);
+                Assert.NotNull(uresp.GetRequestID());
 
                 gResp = tf.Client.GetResourceTags(new GetResourceTagsRequest(resArn));
                 Assert.Equal(200, gResp.StatusCode);
-                Assert.NotNull(gResp.Data.RequestID);
+                Assert.NotNull(gResp.GetRequestID());
                 Assert.Equal(fullArn, gResp.Data.ResourceArn);
                 Assert.False(gResp.Data.Tags.ContainsKey("k1"));
                 Assert.False(gResp.Data.Tags.ContainsKey("k2"));
