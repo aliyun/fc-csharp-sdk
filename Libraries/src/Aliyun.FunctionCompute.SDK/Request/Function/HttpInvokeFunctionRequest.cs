@@ -65,9 +65,12 @@ namespace Aliyun.FunctionCompute.SDK.Request
             foreach (var item in this.Headers)
                 request.AddHeader(item.Key, item.Value);
 
-            foreach (var item in this.UnescapedQueries)
-                foreach (var query in item.Value)
-                    request.AddQueryParameter(item.Key, query);
+            if (this.UnescapedQueries != null)
+            {
+                foreach (var item in this.UnescapedQueries)
+                    foreach (var query in item.Value)
+                        request.AddQueryParameter(item.Key, query);
+            }
 
             request.AddParameter("application/octet-stream", this.Payload, ParameterType.RequestBody);
 

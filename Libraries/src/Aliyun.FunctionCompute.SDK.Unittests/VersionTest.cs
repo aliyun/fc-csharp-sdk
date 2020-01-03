@@ -20,7 +20,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         public VersionUnitTests()
         {
             Console.WriteLine("VersionUnitTests Setup .....");
-            Service = "test-charp-" + TestConfig.RandomString(8);
+            Service = "test-csharp-" + TestConfig.RandomString(8);
             tf = new TestConfig();
         }
 
@@ -175,7 +175,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         {
             tf.Client.CreateService(new CreateServiceRequest(Service));
 
-            string name = "test-charp-func" + TestConfig.RandomString(8);
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
             byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
             var code = new Code(Convert.ToBase64String(contents));
             var response = tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.handler", code, "desc"));
@@ -198,6 +198,10 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             Assert.Equal(1, resp3.Data.ProvisionConfigs.GetLength(0));
             Assert.Equal(10, resp3.Data.ProvisionConfigs[0].Target);
             Assert.True(string.IsNullOrEmpty(resp3.Data.NextToken));
+
+            resp1 = tf.Client.PutProvisionConfig(new PutProvisionConfigRequest(Service, "staging", name, 0));
+            Assert.Equal(200, resp1.StatusCode);
+            Assert.Equal(0, resp1.Data.Target);
 
             var response4 = tf.Client.GetFunction(new GetFunctionRequest(Service, name));
             Assert.Equal("desc", response4.Data.Description);
@@ -225,7 +229,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         {
             tf.Client.CreateService(new CreateServiceRequest(Service));
 
-            string name = "test-charp-func" + TestConfig.RandomString(8);
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
             byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
             var code = new Code(Convert.ToBase64String(contents));
             tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.handler", code, "desc"));

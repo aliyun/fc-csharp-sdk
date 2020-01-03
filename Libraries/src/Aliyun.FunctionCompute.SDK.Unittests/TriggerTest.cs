@@ -23,7 +23,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         public TriggerUnitTests()
         {
             Console.WriteLine("TriggerUnitTests Setup .....");
-            Service = "test-charp-" + TestConfig.RandomString(8);
+            Service = "test-csharp-" + TestConfig.RandomString(8);
             Function = Service;
             tf = new TestConfig();
         }

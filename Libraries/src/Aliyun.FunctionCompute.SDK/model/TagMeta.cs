@@ -21,19 +21,16 @@ namespace Aliyun.FunctionCompute.SDK.model
         }
     }
 
-    public class GetTagMetaWithRequestID : TagMeta
+    public class GetTagMeta : TagMeta
     {
-        [JsonProperty("requestId")]
-        public string RequestID { get; set; }
 
-        public GetTagMetaWithRequestID()
+        public GetTagMeta()
         {
         }
 
-        public GetTagMetaWithRequestID(string rid, string resourceArn, Dictionary<string, string> tags) :
+        public GetTagMeta(string resourceArn, Dictionary<string, string> tags) :
             base(resourceArn,tags)
         {
-            this.RequestID = rid;
         }
     }
 }

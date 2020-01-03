@@ -31,5 +31,10 @@ namespace Aliyun.FunctionCompute.SDK.Response
         {
             this.Headers = headers;
         }
+
+        public string GetRequestID()
+        {
+            return this.Headers[Constants.HeaderKeys.REQUEST_ID].ToString();
+        }
     }
 }

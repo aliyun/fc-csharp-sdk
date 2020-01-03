@@ -29,7 +29,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         public FunctionUnitTests()
         {
             Console.WriteLine("FunctionUnitTests Setup .....");
-            Service = "test-charp-" + TestConfig.RandomString(8);
+            Service = "test-csharp-" + TestConfig.RandomString(8);
             tf = new TestConfig();
         }
 
@@ -69,7 +69,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
 
             tf.Client.CreateService(new CreateServiceRequest(Service));
 
-            string name = "test-charp-func" + TestConfig.RandomString(8);
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
             byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
             var code = new Code(Convert.ToBase64String(contents));
             var response = tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.handler", code, "desc"));
@@ -143,7 +143,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                 new CreateServiceRequest(Service)
                 );
 
-            string name = "test-charp-func" + TestConfig.RandomString(8);
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
             byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
             var code = new Code(Convert.ToBase64String(contents));
             var response = tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.handler", code, "desc"));
@@ -171,7 +171,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                 new CreateServiceRequest(Service)
                 );
 
-            string name = "test-charp-func" + TestConfig.RandomString(8);
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
             byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
             var code = new Code(Convert.ToBase64String(contents));
             var response = tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.wsgi_echo_handler", code, "desc"));
@@ -197,6 +197,15 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             Assert.Equal("POST", obj.Method);
             Assert.Equal("/action with space", obj.Path);
             Assert.Equal(202, response3.StatusCode);
+
+
+            var response4 = tf.Client.InvokeHttpFunction(new HttpInvokeFunctionRequest(Service, name, "POST", "/action%20with%20space", null,
+                                       null, null, null));
+
+            var obj2 = JsonConvert.DeserializeObject<HttpInvokeResult>(response4.Content);
+            Assert.Equal("POST", obj2.Method);
+            Assert.Equal("/action with space", obj2.Path);
+            Assert.Equal(202, response4.StatusCode);
 
             tf.Client.DeleteTrigger(new DeleteTriggerRequest(Service, name, "my-http-trigger"));
         }

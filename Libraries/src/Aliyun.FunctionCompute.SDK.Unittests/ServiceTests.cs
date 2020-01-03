@@ -40,7 +40,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         [Fact]
         public void TestServiceCRUD()
         {
-            string name = "test-charp-" + TestConfig.RandomString(8);
+            string name = "test-csharp-" + TestConfig.RandomString(8);
             this.ServiceNames.Add(name);
             string desc = "create by c# sdk";
            
@@ -114,7 +114,7 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                
                 var tResp = tf.Client.TagResource(new TagResourceRequest(resArn, tags));
                 Assert.Equal(200, tResp.StatusCode);
-                Assert.NotNull(tResp.Data.RequestId);
+                Assert.NotNull(tResp.GetRequestID());
 
                 this.ServiceNames.Add(element);
                 i++;
