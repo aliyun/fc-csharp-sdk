@@ -31,7 +31,8 @@ namespace Aliyun.FunctionCompute.SDK.Response
         {
             this.StatusCode = status;
             this.Content = content;
-            if(status < 300)
+            this.Content.Replace(@"\u0026", "&");
+            if (status < 300)
                 this.Data = JsonConvert.DeserializeObject<FunctionCodeMeta>(this.Content);
         }
 

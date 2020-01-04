@@ -101,6 +101,10 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             Assert.True(response.Data.CodeSize > 0);
             Assert.True(response.Data.MemorySize == 256);
 
+
+            var resp = tf.Client.GetFunctionCode(new GetFunctionCodeRequest(Service, name));
+            Assert.False(resp.Data.Url.Contains(@"\u0026"));
+
             var response3 = tf.Client.UpdateFunction(new UpdateFunctionRequest(Service, name, "python3", "index.handler", code, "new-desc"));
             //Console.WriteLine(response3.Content);
             Assert.Equal("new-desc", response3.Data.Description);
