@@ -42,6 +42,26 @@ namespace Aliyun.FunctionCompute.SDK.model
         }
     }
 
+    public class CustomContainerConfig
+    {
+
+        [JsonProperty("image")]
+        public string Image;
+
+        [JsonProperty("command")]
+        public string Command;
+
+        [JsonProperty("args")]
+        public string Args;
+
+        public CustomContainerConfig(string image, string cmd = null, string args = null)
+        {
+            this.Image = image;
+            this.Command = cmd;
+            this.Args = args;
+        }
+    }
+
     public class FunctionMetaBase
     {
         [JsonProperty("description")]
@@ -67,6 +87,12 @@ namespace Aliyun.FunctionCompute.SDK.model
 
         //[JsonProperty("reservedContainerCount")]
         //public int? ReservedContainerCount { get; set; }
+
+        [JsonProperty("customContainerConfig")]
+        public CustomContainerConfig CustomContainerConfig { get; set; }
+
+        [JsonProperty("caPort")]
+        public int CAPort { get; set; }
 
         [JsonProperty("environmentVariables")]
         public Dictionary<string, string> EnvironmentVariables { get; set; }
