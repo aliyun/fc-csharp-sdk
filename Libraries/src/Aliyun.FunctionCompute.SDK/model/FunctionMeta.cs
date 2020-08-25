@@ -85,6 +85,9 @@ namespace Aliyun.FunctionCompute.SDK.model
         [JsonProperty("memorySize")]
         public int MemorySize { get; set; }
 
+        [JsonProperty("instanceType")]
+        public string InstanceType { get; set; }
+
         //[JsonProperty("reservedContainerCount")]
         //public int? ReservedContainerCount { get; set; }
 
@@ -101,7 +104,7 @@ namespace Aliyun.FunctionCompute.SDK.model
 
         public FunctionMetaBase(string runtime, string handler, string desc = null,
             int memorySize = 256, int timeout = 60, Dictionary<string, string> env = null,
-            string initializer = null, int initializationTimeout = 30)
+            string initializer = null, int initializationTimeout = 30, string instanceType = null)
         {
             this.Runtime = runtime;
             this.Handler = handler;
@@ -111,6 +114,7 @@ namespace Aliyun.FunctionCompute.SDK.model
             this.EnvironmentVariables = env;
             this.Initializer = initializer;
             this.InitializationTimeout = initializationTimeout;
+            this.InstanceType = instanceType;
         }
     }
 
@@ -123,8 +127,8 @@ namespace Aliyun.FunctionCompute.SDK.model
 
         public UpdateFunctionMeta(string runtime, string handler, Code code, string desc = null,
                 int memorySize = 256, int timeout = 60, Dictionary<string, string> env = null,
-                string initializer = null, int initializationTimeout = 30)
-            :base(runtime, handler, desc, memorySize, timeout, env, initializer, initializationTimeout)
+                string initializer = null, int initializationTimeout = 30, string instanceType = null)
+            :base(runtime, handler, desc, memorySize, timeout, env, initializer, initializationTimeout, instanceType)
         {
             this.Code = code;
         }
@@ -139,8 +143,8 @@ namespace Aliyun.FunctionCompute.SDK.model
 
         public CreateFunctionMeta(string functionName,string runtime, string handler, Code code, string desc = null,
                 int memorySize = 256, int timeout = 60, Dictionary<string, string> env = null,
-                string initializer = null, int initializationTimeout = 30)
-            : base(runtime, handler,code, desc, memorySize, timeout, env, initializer, initializationTimeout)
+                string initializer = null, int initializationTimeout = 30, string instanceType = null)
+            : base(runtime, handler,code, desc, memorySize, timeout, env, initializer, initializationTimeout, instanceType)
         {
             this.FunctionName = functionName;
         }
