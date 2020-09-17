@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Aliyun.FC.SDK.NetCore</PackageId>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ReleaseVersion>1.1.2</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>

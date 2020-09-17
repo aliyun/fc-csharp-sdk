@@ -37,6 +37,10 @@ namespace Aliyun.FunctionCompute.SDK.Constants
 
         public static readonly string SINGLE_PROVISION_CONFIG_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/provision-config";
 
+        public static readonly string ASYNC_CONFIG_PATH = SINGLE_FUNCTION_PATH + "/async-invoke-config";
+        public static readonly string ASYNC_CONFIG_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/async-invoke-config";
+        public static readonly string LIST_ASYNC_CONFIGS_PATH = SINGLE_FUNCTION_PATH + "/async-invoke-configs";
+
         /*
          * 3 seconds
          *
