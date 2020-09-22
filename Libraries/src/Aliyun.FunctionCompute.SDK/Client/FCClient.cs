@@ -447,5 +447,46 @@ namespace Aliyun.FunctionCompute.SDK.Client
             return this.DoRequestCommon<ListProvisionConfigsResponse>(listProvisionConfigsRequest.GenHttpRequest(Config));
         }
         #endregion Provision
+
+        #region function async config
+        /// <summary>
+        /// put function async config.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="putFunctionAsyncConfigRequest">Put function async config request.</param>
+        public PutFunctionAsyncConfigResponse PutFunctionAsyncConfig(PutFunctionAsyncConfigRequest putFunctionAsyncConfigRequest)
+        {
+            return this.DoRequestCommon<PutFunctionAsyncConfigResponse>(putFunctionAsyncConfigRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// get function async config.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="getFunctionAsyncConfigRequest">Get function async config request.</param>
+        public GetFunctionAsyncConfigResponse GetFunctionAsyncConfig(GetFunctionAsyncConfigRequest getFunctionAsyncConfigRequest)
+        {
+            return this.DoRequestCommon<GetFunctionAsyncConfigResponse>(getFunctionAsyncConfigRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// delete function async config.
+        /// </summary>
+        /// <param name="deleteFunctionAsyncConfigRequest">Delete function async config request.</param>
+        public DeleteFunctionAsyncConfigResponse DeleteFunctionAsyncConfig(DeleteFunctionAsyncConfigRequest deleteFunctionAsyncConfigRequest)
+        {
+            return this.DoRequestCommon<DeleteFunctionAsyncConfigResponse>(deleteFunctionAsyncConfigRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// list function async configs.
+        /// </summary>
+        /// <returns>dict</returns>
+        /// <param name="listFunctionAsyncConfigsRequest">List function async configs request.</param>
+        public ListFunctionAsyncConfigsResponse ListFunctionAsyncConfigs(ListFunctionAsyncConfigsRequest listFunctionAsyncConfigsRequest)
+        {
+            return this.DoRequestCommon<ListFunctionAsyncConfigsResponse>(listFunctionAsyncConfigsRequest.GenHttpRequest(Config));
+        }
+        # endregion function async config
     }
 }
