@@ -50,6 +50,8 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
                     tf.ServiceRole, tf.LogConfig, true, tf.VpcConfig, tf.NasConfig
                     )
                 );
+            Console.WriteLine(response.Content);
+            Console.WriteLine(response.Headers);
             Assert.Equal(name, response.Data.ServiceName);
             Assert.Equal(desc, response.Data.Description);
             Assert.Equal(tf.ServiceRole, response.Data.Role);

@@ -220,32 +220,6 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
         }
 
         [Fact]
-        public void TestRDSTrigger()
-        {
-            var client = tf.Client;
-            client.CreateService(new CreateServiceRequest(Service));
-
-            byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/hello.zip");
-            var code = new Code(Convert.ToBase64String(contents));
-            client.CreateFunction(new CreateFunctionRequest(Service, Function, "python3", "index.handler", code, "desc"));
-
-            string triggerName = "my-rds-trigger";
-            var rdsTriggerConfig = new RdsTriggerConfig(new string[] { "db.stu"}, 3, 1, "json");
-            string sourceArn = string.Format("acs:rds:{0}:{1}:dbinstance/{2}", tf.Region, tf.AccountID, tf.RdsInstanceId);
-            var response = client.CreateTrigger(new CreateTriggerRequest(Service, Function, triggerName, "rds",
-                                     sourceArn, tf.InvocationRole, rdsTriggerConfig, "rds trigger desc"));
-
-            this.Triggers.Add(triggerName);
-
-            Assert.Equal(triggerName, response.Data.TriggerName);
-            Assert.Equal("rds trigger desc", response.Data.Description);
-            Assert.Equal("rds", response.Data.TriggerType);
-            Assert.Equal(sourceArn, response.Data.SourceArn);
-            Assert.Equal(tf.InvocationRole, response.Data.InvocationRole);
-            Assert.Equal(JsonConvert.DeserializeObject<RdsTriggerConfig>(response.Data.TriggerConfig.ToString()), rdsTriggerConfig);
-        }
-
-        [Fact]
         public void TestMNSTopicTrigger()
         {
             var client = tf.Client;
