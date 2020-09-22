@@ -92,7 +92,7 @@ namespace Aliyun.FunctionCompute.SDK.model
         public CustomContainerConfig CustomContainerConfig { get; set; }
 
         [JsonProperty("caPort")]
-        public int CAPort { get; set; }
+        public int? CAPort { get; set; }
 
         [JsonProperty("environmentVariables")]
         public Dictionary<string, string> EnvironmentVariables { get; set; }
@@ -110,7 +110,7 @@ namespace Aliyun.FunctionCompute.SDK.model
             this.Timeout = timeout;
             this.EnvironmentVariables = env;
             this.Initializer = initializer;
-            this.InitializationTimeout = InitializationTimeout;
+            this.InitializationTimeout = initializationTimeout;
         }
     }
 

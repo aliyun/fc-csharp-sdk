@@ -31,17 +31,20 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             Console.WriteLine("AsyncConfigUnitTests TearDownBase .....");
             var aResp = tf.Client.ListFunctionAsyncConfigs(new ListFunctionAsyncConfigsRequest(Service, Function));
 
-            foreach (var c in aResp.Data.AsyncConfigs)
+            if(aResp.Data != null && aResp.Data.AsyncConfigs != null)
             {
-                Console.WriteLine("asyncConfig leak, now deleting.....");
-                try
+                foreach (var c in aResp.Data.AsyncConfigs)
                 {
-                    var resp2 = tf.Client.DeleteFunctionAsyncConfig(
-                        new DeleteFunctionAsyncConfigRequest(c.Service, c.Qualifier, c.Function));
-                }
-                catch (Exception)
-                {
-                    //
+                    Console.WriteLine("asyncConfig leak, now deleting.....");
+                    try
+                    {
+                        var resp2 = tf.Client.DeleteFunctionAsyncConfig(
+                            new DeleteFunctionAsyncConfigRequest(c.Service, c.Qualifier, c.Function));
+                    }
+                    catch (Exception)
+                    {
+                        //
+                    }
                 }
             }
 
