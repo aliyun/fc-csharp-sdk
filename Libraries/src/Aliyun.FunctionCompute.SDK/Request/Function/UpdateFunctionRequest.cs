@@ -24,13 +24,13 @@ namespace Aliyun.FunctionCompute.SDK.Request
             int memorySize=256, int timeout = 60,
             Dictionary<string, string> env = null,
             string initializer = null, int initializationTimeout=30, 
-            Dictionary<string, string> customHeaders = null)
+            Dictionary<string, string> customHeaders = null, string instanceType = null)
         {
             Contract.Requires(string.IsNullOrEmpty(functionName) == false);
             Contract.Requires(string.IsNullOrEmpty(serviceName) == false);
             this.ServiceName = serviceName;
             this.FunctionName = functionName;
-            this.UpdateFunctionMeta = new UpdateFunctionMeta(runtime, handler, code, desc, memorySize, timeout, env, initializer, initializationTimeout);
+            this.UpdateFunctionMeta = new UpdateFunctionMeta(runtime, handler, code, desc, memorySize, timeout, env, initializer, initializationTimeout, instanceType);
             this.Headers = customHeaders;
         }
 
