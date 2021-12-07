@@ -13,6 +13,10 @@ namespace Aliyun.FunctionCompute.SDK.Constants
         public static readonly string SINGLE_SERVICE_PATH = SERVICE_PATH + "/{1}";
         public static readonly string FUNCTION_PATH = SINGLE_SERVICE_PATH + "/functions";
         public static readonly string SINGLE_FUNCTION_PATH = FUNCTION_PATH + "/{2}";
+        public static readonly string SINGLE_INSTANCE_PATH = SINGLE_FUNCTION_PATH + "/instances";
+        public static readonly string INSTACE_PATH = SINGLE_INSTANCE_PATH + "/{3}";
+        public static readonly string SINGLE_INSTANCE_EXEC_PATH = INSTACE_PATH + "/exec";
+
         public static readonly string CUSTOM_DOMAIN_PATH = "/{0}/custom-domains";
         public static readonly string SINGLE_CUSTOM_DOMAIN_PATH = CUSTOM_DOMAIN_PATH + "/{1}";
         public static readonly string SERVICE_VERSION_PATH = SINGLE_SERVICE_PATH + "/versions";
@@ -32,6 +36,10 @@ namespace Aliyun.FunctionCompute.SDK.Constants
         public static readonly string SINGLE_SERVICE_WITH_QUALIFIER_PATH = SERVICE_PATH + "/{1}.{2}";
         public static readonly string FUNCTION_WITH_QUALIFIER_PATH = SINGLE_SERVICE_WITH_QUALIFIER_PATH + "/functions";
         public static readonly string SINGLE_FUNCTION_WITH_QUALIFIER_PATH = FUNCTION_WITH_QUALIFIER_PATH + "/{3}";
+        public static readonly string SINGLE_INSTANCE_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/instances";
+        public static readonly string INSTACE_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/{4}";
+        public static readonly string SINGLE_INSTANCE_EXEC_WITH_QUALIFIER_PATH = INSTACE_WITH_QUALIFIER_PATH + "/exec";
+
         public static readonly string FUNCTION_CODE_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/code";
         public static readonly string INVOKE_FUNCTION_WITH_QUALIFIER_PATH = SINGLE_FUNCTION_WITH_QUALIFIER_PATH + "/invocations";
 
