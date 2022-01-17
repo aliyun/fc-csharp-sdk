@@ -166,6 +166,39 @@ namespace Aliyun.FunctionCompute.SDK.Unittests
             Assert.Equal(202, response3.StatusCode);
         }
 
+        [Fact]
+        public void TestFunctionInvokeWithClientTimeout()
+        {
+            Console.WriteLine("test invoke with sleep 120s .....");
+            tf.Client.CreateService(
+                new CreateServiceRequest(Service)
+                );
+
+            string name = "test-csharp-func" + TestConfig.RandomString(8);
+            byte[] contents = File.ReadAllBytes(Directory.GetCurrentDirectory() + "/sleep.zip");
+            var code = new Code(Convert.ToBase64String(contents));
+            var response = tf.Client.CreateFunction(new CreateFunctionRequest(Service, name, "python3", "index.handler", code, "desc", 256, 600));
+            Assert.True(200 == response.StatusCode);
+
+            // RestClient use HttpWebRequest default Timeout 100s as default timeout when RestClient.Timeout is zero.
+            Console.WriteLine(string.Format("client default timeout {0} ms .....", tf.Client.GetClientTimeout())); 
+
+            byte[] hello = Encoding.UTF8.GetBytes("hello csharp world");
+
+            var response2 = tf.Client.InvokeFunction(new InvokeFunctionRequest(Service, name, null, hello));
+            Console.WriteLine(response.Headers);
+            Assert.True(200 == response2.StatusCode);
+            Assert.True("" != response2.GetRequestID());
+
+            tf.Client.SetClientTimeout(3000); // 3 second
+            Console.WriteLine(string.Format("client timeout {0} ms .....", tf.Client.GetClientTimeout()));
+            var response3 = tf.Client.InvokeFunction(new InvokeFunctionRequest(Service, name, null, hello));
+            Console.WriteLine(string.Format("invoke response statusCode: {0}, content: {1}, data: {2} .....", 
+                response3.StatusCode, response3.Content, response3.Data));
+            Assert.True("" == response3.GetRequestID());
+            Assert.True(0 == response3.StatusCode);
+        }
+
 
         [Fact]
         public void TestFunctionHttpInvoke()

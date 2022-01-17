@@ -43,6 +43,10 @@ namespace Aliyun.FunctionCompute.SDK.Response
 
         public string GetRequestID()
         {
+            if (!this.Headers.ContainsKey(Constants.HeaderKeys.REQUEST_ID))
+            {
+                return "";
+            }
             return this.Headers[Constants.HeaderKeys.REQUEST_ID].ToString();
         }
     }
