@@ -24,6 +24,25 @@ namespace Aliyun.FunctionCompute.SDK.Client
         {
             Config = new FCConfig(region, uid, accessKeyId, accessKeySecret, securityToken, false);
             RestHttpClient = new RestClient(Config.Endpoint);
+            RestHttpClient.Timeout = 1800000; // 30min (unit: ms)
+        }
+
+        /// <summary>
+        /// Set RestClient timeout.
+        /// </summary>
+        /// <param name="timeout">RestClient timeout.</param>
+        public void SetClientTimeout(int timeout)
+        {
+            this.RestHttpClient.Timeout = timeout;
+        }
+
+        /// <summary>
+        /// Get the RestClient timeout.
+        /// </summary>
+        /// <returns>RestClient timeout.</returns>
+        public int GetClientTimeout()
+        {
+            return this.RestHttpClient.Timeout;
         }
 
         public T DoRequestCommon<T>(RestRequest r) where T: IResponseBase
