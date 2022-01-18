@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.WebSockets;
+using System.Threading;
 using RestSharp;
 using Aliyun.FunctionCompute.SDK.Request;
 using Aliyun.FunctionCompute.SDK.Config;
@@ -20,7 +22,7 @@ namespace Aliyun.FunctionCompute.SDK.Client
         /// <param name="accessKeyId">Access key identifier.</param>
         /// <param name="accessKeySecret">Access key secret.</param>
         /// <param name="securityToken">Security token.</param>
-        public FCClient(string region, string uid, string accessKeyId, string accessKeySecret, string securityToken="")
+        public FCClient(string region, string uid, string accessKeyId, string accessKeySecret, string securityToken = "")
         {
             Config = new FCConfig(region, uid, accessKeyId, accessKeySecret, securityToken, false);
             RestHttpClient = new RestClient(Config.Endpoint);
@@ -45,7 +47,13 @@ namespace Aliyun.FunctionCompute.SDK.Client
             return this.RestHttpClient.Timeout;
         }
 
-        public T DoRequestCommon<T>(RestRequest r) where T: IResponseBase
+        public void SetEndpoint(string endpoint)
+        {
+            this.Config.Endpoint = endpoint;
+            RestHttpClient = new RestClient(endpoint);
+        }
+
+        public T DoRequestCommon<T>(RestRequest r) where T : IResponseBase
         {
             IRestResponse response = this.RestHttpClient.Execute(r);
             if (response.StatusCode.GetHashCode() > 299)
@@ -506,6 +514,47 @@ namespace Aliyun.FunctionCompute.SDK.Client
         {
             return this.DoRequestCommon<ListFunctionAsyncConfigsResponse>(listFunctionAsyncConfigsRequest.GenHttpRequest(Config));
         }
-        # endregion function async config
+        #endregion function async config
+
+        #region instance exec
+        /// <summary>
+        /// Lists the instances.
+        /// </summary>
+        /// <returns>The instances.</returns>
+        /// <param name="listFunctionsRequest">List instances request.</param>
+        public ListInstancesResponse ListInstances(ListInstancesRequest lisInstancesRequest)
+        {
+            return this.DoRequestCommon<ListInstancesResponse>(lisInstancesRequest.GenHttpRequest(Config));
+        }
+
+        /// <summary>
+        /// Lists the instances.
+        /// </summary>
+        /// <returns>The instances.</returns>
+        /// <param name="listFunctionsRequest">List instances request.</param>
+        public InstanceExecResponse InstanceExec(InstanceExecRequest instanceExecRequest, ExecCallback callback)
+        {
+            var webPath = Config.Endpoint + instanceExecRequest.GetPath() + "?" + instanceExecRequest.GetQueries();
+            webPath = webPath.Replace("http", "ws");
+
+            ClientWebSocket ws = new ClientWebSocket();
+
+            Dictionary<string, string> headers = new Dictionary<string, string> {
+                // { "host", this.Config.Host},
+                { "date", DateTime.Now.ToUniversalTime().ToString("r")},
+                { "user-agent", this.Config.UserAgent},
+            };
+            if (this.Config.SecurityToken != "")
+                headers.Add("x-fc-security-token", this.Config.SecurityToken);
+            headers.Add("authorization", instanceExecRequest.GetSign(headers));
+
+            foreach (var header in headers)
+                ws.Options.SetRequestHeader(header.Key, header.Value);
+
+            return new InstanceExecResponse(ws, webPath, callback);
+        }
+
+        #endregion instance exec
+
     }
 }
